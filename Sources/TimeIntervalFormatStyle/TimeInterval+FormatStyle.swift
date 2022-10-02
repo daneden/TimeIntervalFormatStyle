@@ -19,10 +19,10 @@ public extension TimeInterval {
 
 public extension FormatStyle where Self == TimeInterval.TimeIntervalFormatStyle {
     
-    /// Format the given string as a time interval in the format 7:54:33.632 or similar
-    /// - Parameter showMilliseconds: Shows millieconds. Ex: 1:03:44:789 . Default == `false`
-    static func timeInterval(showMilliseconds: Bool = false ) -> TimeInterval.TimeIntervalFormatStyle {
-        TimeInterval.TimeIntervalFormatStyle(showMilliseconds)
-    }
+	/// Format the given string as a time interval in the format 7:54:33.632 or similar
+	/// - Parameter showMilliseconds: Shows millieconds. Ex: 1:03:44:789 . Default == `false`
+	static func timeInterval(allowedUnits: NSCalendar.Unit, unitsStyle: DateComponentsFormatter.UnitsStyle) -> TimeInterval.TimeIntervalFormatStyle {
+		TimeInterval.TimeIntervalFormatStyle(allowedUnits, unitsStyle: unitsStyle)
+	}
     
 }
