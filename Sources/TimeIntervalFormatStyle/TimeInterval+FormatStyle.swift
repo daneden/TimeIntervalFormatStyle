@@ -20,8 +20,13 @@ public extension TimeInterval {
 public extension FormatStyle where Self == TimeInterval.TimeIntervalFormatStyle {
     
 	/// Format the given string as a time interval in the format 7:54:33.632 or similar
-	/// - Parameter showMilliseconds: Shows millieconds. Ex: 1:03:44:789 . Default == `false`
-	static func timeInterval(allowedUnits: NSCalendar.Unit, unitsStyle: DateComponentsFormatter.UnitsStyle) -> TimeInterval.TimeIntervalFormatStyle {
+	/// - Parameters:
+	///   - allowedUnits: The bitmask of calendrical units such as day and month to include in the output string.
+	///   - unitsStyle: The formatting style for unit names.
+	///   - zeroFormattingBehaviour: The formatting style for units whose value is 0.
+	static func timeInterval(allowedUnits: NSCalendar.Unit,
+													 unitsStyle: DateComponentsFormatter.UnitsStyle,
+													 zeroFormattingBehaviour: DateComponentsFormatter.ZeroFormattingBehavior = .default) -> TimeInterval.TimeIntervalFormatStyle {
 		TimeInterval.TimeIntervalFormatStyle(allowedUnits, unitsStyle: unitsStyle)
 	}
     

@@ -8,6 +8,7 @@
 import Foundation
 
 extension DateComponentsFormatter.UnitsStyle: Codable {}
+extension DateComponentsFormatter.ZeroFormattingBehavior: Codable, Hashable {}
 extension NSCalendar.Unit: Codable, Hashable {}
 
 public extension TimeInterval {
@@ -15,12 +16,19 @@ public extension TimeInterval {
 
 			private var allowedUnits: NSCalendar.Unit
 			private var unitsStyle: DateComponentsFormatter.UnitsStyle
+			private var zeroFormattingBehaviour: DateComponentsFormatter.ZeroFormattingBehavior
         
 			/// Constructer to allow extensions to set formatting
-			/// - Parameter showMilliseconds: Shows millieconds. Ex: 1:03:44:789 . Default == `false`
-			init(_ allowedUnits: NSCalendar.Unit = [.hour, .minute, .second], unitsStyle: DateComponentsFormatter.UnitsStyle = .abbreviated) {
+			/// - Parameters:
+			///   - allowedUnits: The bitmask of calendrical units such as day and month to include in the output string.
+			///   - unitsStyle: The formatting style for unit names.
+			///   - zeroFormattingBehaviour: The formatting style for units whose value is 0.
+			init(_ allowedUnits: NSCalendar.Unit = [.hour, .minute, .second],
+					 unitsStyle: DateComponentsFormatter.UnitsStyle = .abbreviated,
+					 zeroFormattingBehaviour: DateComponentsFormatter.ZeroFormattingBehavior = .default) {
 				self.allowedUnits = allowedUnits
 				self.unitsStyle = unitsStyle
+				self.zeroFormattingBehaviour = zeroFormattingBehaviour
 			}
     }
 }
@@ -32,6 +40,7 @@ extension TimeInterval.TimeIntervalFormatStyle: FormatStyle {
 			let formatter = DateComponentsFormatter()
 			formatter.allowedUnits = allowedUnits
 			formatter.unitsStyle = unitsStyle
+			formatter.zeroFormattingBehavior = zeroFormattingBehaviour
 			return formatter.string(from: value) ?? ""
     }
 }
