@@ -24,8 +24,8 @@ public extension FormatStyle where Self == TimeInterval.TimeIntervalFormatStyle 
 	///   - allowedUnits: The bitmask of calendrical units such as day and month to include in the output string.
 	///   - unitsStyle: The formatting style for unit names.
 	///   - zeroFormattingBehaviour: The formatting style for units whose value is 0.
-	static func timeInterval(allowedUnits: NSCalendar.Unit,
-													 unitsStyle: DateComponentsFormatter.UnitsStyle,
+	static func timeInterval(allowedUnits: NSCalendar.Unit = [.hour, .minute, .second],
+													 unitsStyle: DateComponentsFormatter.UnitsStyle = .abbreviated,
 													 zeroFormattingBehaviour: DateComponentsFormatter.ZeroFormattingBehavior = .default) -> TimeInterval.TimeIntervalFormatStyle {
 		TimeInterval.TimeIntervalFormatStyle(allowedUnits, unitsStyle: unitsStyle)
 	}
